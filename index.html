@@ -1,141 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Tushar M. Pawar - Solution Architect</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
-        h1, h2 { color: #2E4053; }
-        ul { margin-top: 0; }
-        .section { margin-bottom: 30px; }
-        .contact { margin-bottom: 20px; }
-        .job-title { font-weight: bold; }
-        .job-duration { font-style: italic; }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tushar M. Pawar — Solution Architect (Cloud, Data Platforms, Modernization)" />
+  <title>Tushar M. Pawar — Solution Architect</title>
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --subtle: rgba(255,255,255,.18);
+      --accent: #7c3aed;   /* purple */
+      --accent-2: #22c55e; /* green */
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.35), transparent 55%),
+        radial-gradient(900px 500px at 95% 15%, rgba(34,197,94,.22), transparent 55%),
+        radial-gradient(900px 600px at 50% 110%, rgba(59,130,246,.18), transparent 55%),
+        linear-gradient(180deg, #070a14 0%, #0b1020 40%, #070a14 100%);
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 3px; }
+
+    .container{
+      width: min(1100px, 92vw);
+      margin: 34px auto 70px;
+    }
+
+    /* Header */
+    .hero{
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+      padding: 22px;
+      border: 1px solid var(--subtle);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .hero h1{
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .tagline{
+      display: inline-flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--subtle);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .summary{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15.5px;
+      max-width: 68ch;
+    }
+
+    .contactCard{
+      border: 1px solid var(--subtle);
+      border-radius: calc(var(--radius) - 4px);
+      background: rgba(0,0,0,.18);
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+    .contactCard h2{
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contactRow{
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 10px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+    }
+    .contactRow:hover{
+      border-color: var(--subtle);
+      background: rgba(255,255,255,.05);
+    }
+    .icon{
+      width: 20px; height: 20px;
+      display: inline-block;
+      color: rgba(255,255,255,.75);
+    }
+    .contactLabel{
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .contactValue{
+      font-size: 14.5px;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    /* Layout sections */
+    .grid{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--subtle);
+      background: rgba(255,255,255,.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      padding: 18px;
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    .divider{
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 10px 0 14px;
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    li{ margin: 6px 0; }
+
+    /* Experience */
+    .experience{ margin-top: 18px; }
+    .role{
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .role:first-child{ border-top: 0; padding-top: 0; }
+    .roleHeader{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .company{
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -.01em;
+    }
+    .title{
+      color: var(--muted);
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .dates{
+      color: rgba(255,255,255,.65);
+      font-size: 13.5px;
+      white-space: nowrap;
+    }
+    .role ul{ margin-top: 10px; }
+
+    /* Footer */
+    footer{
+      margin-top: 20px;
+      color: rgba(255,255,255,.55);
+      font-size: 12.5px;
+      text-align: center;
+    }
+
+    /* Print */
+    @media print{
+      body{
+        background: white !important;
+        color: #111 !important;
+      }
+      .hero, .card{
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        border-color: #ddd !important;
+        background: white !important;
+      }
+      .pill{ border-color: #ddd !important; background: #f7f7f7 !important; color: #333 !important; }
+      .summary, ul, .muted { color: #222 !important; }
+      a{ text-decoration: none !important; }
+      footer{ display: none; }
+      .container{ margin: 0; width: 100%; }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
+  <main class="container">
+    <section class="hero" aria-label="Header">
+      <div>
         <h1>Tushar M. Pawar</h1>
-        <p class="contact">
-            <strong>Solution Architect</strong><br>
-            📧 tusharpawar123@gmail.com | 📞 +91 9223381315
+        <div class="tagline" aria-label="Highlights">
+          <span class="pill">Solution Architect</span>
+          <span class="pill">Cloud (AWS)</span>
+          <span class="pill">Data Platforms & ETL</span>
+          <span class="pill">Modernization • DevOps • ITIL</span>
+        </div>
+
+        <p class="summary">
+          Seasoned IT professional with 18+ years of experience in solution architecture, cloud transformation,
+          and data platforms across banking, telecom, and insurance domains. Expertise in designing scalable
+          cloud-native and hybrid architectures, modernizing legacy systems, and building high-performance data pipelines.
+          Strong alignment with enterprise architecture, DevOps, and ITIL practices.
         </p>
-    </header>
+      </div>
 
-    <section class="section">
-        <h2>Professional Summary</h2>
-        <p>Seasoned IT professional with 18+ years of experience in solution architecture, cloud transformation, and data platforms across banking, telecom, and insurance domains. Proven expertise in designing scalable, cloud-native and hybrid architectures on AWS, modernizing legacy systems, and building high-performance data pipelines. Strong alignment with enterprise architecture, DevOps, and ITIL practices.</p>
+      <aside class="contactCard" aria-label="Contact">
+        <h2>Contact</h2>
+
+        <a class="contactRow" href="mailto:tusharpawar123@gmail.com">
+          <span class="icon" aria-hidden="true">✉</span>
+          <span>
+            <div class="contactLabel">Email</div>
+            <div class="contactValue">tusharpawar123@gmail.com</div>
+          </span>
+        </a>
+
+        <a class="contactRow" href="tel:+919223381315">
+          <span class="icon" aria-hidden="true">☎</span>
+          <span>
+            <div class="contactLabel">Phone</div>
+            <div class="contactValue">+91 9223381315</div>
+          </span>
+        </a>
+
+        <!-- Optional: update with your actual LinkedIn URL -->
+        <a class="contactRow" href="#" onclick="return false;">
+          <span class="icon" aria-hidden="true">in</span>
+          <span>
+            <div class="contactLabel">LinkedIn</div>
+            <div class="contactValue">Add your profile URL</div>
+          </span>
+        </a>
+      </aside>
     </section>
 
-    <section class="section">
+    <section class="grid" aria-label="Top sections">
+      <section class="card" aria-label="Core Competencies">
         <h2>Core Competencies</h2>
+        <div class="divider"></div>
         <ul>
-            <li>Cloud Architecture (AWS)</li>
-            <li>Solution Architecture & System Design</li>
-            <li>Data Engineering & ETL Architecture</li>
-            <li>Performance Optimization & Cost Optimization</li>
-            <li>DevOps & CI/CD (Automation & Monitoring)</li>
-            <li>Incident, Problem & Change Management (ITIL)</li>
-            <li>Stakeholder & Client Management</li>
+          <li>Cloud Architecture (AWS)</li>
+          <li>Solution Architecture & System Design</li>
+          <li>Data Engineering & ETL Architecture</li>
+          <li>Performance & Cost Optimization</li>
+          <li>DevOps & CI/CD (Automation & Monitoring)</li>
+          <li>Incident, Problem & Change Management (ITIL)</li>
+          <li>Stakeholder & Client Management</li>
         </ul>
-    </section>
+      </section>
 
-    <section class="section">
+      <section class="card" aria-label="Technical Skills">
         <h2>Technical Skills</h2>
+        <div class="divider"></div>
         <ul>
-            <li><strong>Cloud Platforms:</strong> AWS (EC2, S3, RDS, Lambda)</li>
-            <li><strong>Languages:</strong> SQL, PL/SQL, UNIX Shell Scripting</li>
-            <li><strong>Databases:</strong> Oracle (10g–19), SQL Server, Sybase</li>
-            <li><strong>Tools:</strong> Control-M, ServiceNow, Geneos, Cognos 11, SAP BO</li>
-            <li><strong>DevOps & Monitoring:</strong> CI/CD pipelines, logging, alerting, job scheduling</li>
-            <li><strong>Platforms:</strong> Linux, Unix</li>
+          <li><strong>Cloud:</strong> AWS (EC2, S3, RDS, Lambda)</li>
+          <li><strong>Languages:</strong> SQL, PL/SQL, UNIX Shell Scripting</li>
+          <li><strong>Databases:</strong> Oracle (10g–19), SQL Server, Sybase</li>
+          <li><strong>Tools:</strong> Control-M, ServiceNow, Geneos, Cognos 11, SAP BO</li>
+          <li><strong>DevOps/Monitoring:</strong> CI/CD pipelines, logging, alerting, job scheduling</li>
+          <li><strong>Platforms:</strong> Linux, Unix</li>
         </ul>
+      </section>
     </section>
 
-    <section class="section">
-        <h2>Professional Experience</h2>
-        <h3>ACCELYA (Specialist solution architecture)</h3>
-        <p class="job-title">Role: Solution Architect</p>
-        <p class="job-duration">Nov 2022 – Present</p>
-        <ul>
-            <li>Designed cloud-native and hybrid architectures leveraging AWS and Azure for airline and financial platforms</li>
-            <li>Led application modernization and cloud migration initiatives (lift-and-shift and re-architecture)</li>
-            <li>Defined reference architectures, design standards, and governance models</li>
-            <li>Built scalable data pipelines and integration layers using modern ETL and cloud services</li>
-            <li>Implemented cost optimization strategies and performance tuning for cloud workloads</li>
-            <li>Enabled observability (monitoring, logging, alerting) for production systems</li>
-            <li>Collaborated with stakeholders to translate business needs into high-level and low-level designs</li>
-            <li>Mentored teams on cloud best practices, security, and resiliency patterns</li>
-        </ul>
+    <section class="card experience" aria-label="Professional Experience">
+      <h2>Professional Experience</h2>
+      <div class="divider"></div>
 
-        <h3>BNP Paribas</h3>
-        <p class="job-title">Technical Lead</p>
-        <p class="job-duration">Feb 2019 – Oct 2021</p>
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">ACCELYA</span>
+            <span class="title">— Solution Architect (Specialist Solution Architecture)</span>
+          </div>
+          <div class="dates">Nov 2022 – Present</div>
+        </div>
         <ul>
-            <li>Contributed to architecture evolution towards cloud-ready systems</li>
-            <li>Led production support and system enhancements for market risk platforms</li>
-            <li>Managed incident, problem, and change management processes</li>
-            <li>Performed performance tuning and reliability improvements</li>
-            <li>Participated in architecture reviews and design decisions</li>
+          <li>Designed cloud-native and hybrid architectures leveraging AWS and Azure for airline and financial platforms.</li>
+          <li>Led application modernization and cloud migration initiatives (lift-and-shift and re-architecture).</li>
+          <li>Defined reference architectures, design standards, and governance models.</li>
+          <li>Built scalable data pipelines and integration layers using modern ETL and cloud services.</li>
+          <li>Implemented cost optimization strategies and performance tuning for cloud workloads.</li>
+          <li>Enabled observability (monitoring, logging, alerting) for production systems.</li>
+          <li>Collaborated with stakeholders to translate business needs into high-level and low-level designs.</li>
+          <li>Mentored teams on cloud best practices, security, and resiliency patterns.</li>
         </ul>
+      </article>
 
-        <h3>Capgemini India Pvt Ltd</h3>
-        <p class="job-title">Technical Lead / Senior Consultant</p>
-        <p class="job-duration">May 2017 – Feb 2019</p>
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">BNP Paribas</span>
+            <span class="title">— Technical Lead</span>
+          </div>
+          <div class="dates">Feb 2019 – Oct 2021</div>
+        </div>
         <ul>
-            <li>Delivered enterprise data and reporting solutions for global clients</li>
-            <li>Contributed to data architecture and integration frameworks</li>
-            <li>Led offshore teams and ensured high-quality deliverables</li>
-            <li>Worked on data warehousing and BI solutions</li>
+          <li>Contributed to architecture evolution towards cloud-ready systems.</li>
+          <li>Led production support and system enhancements for market risk platforms.</li>
+          <li>Managed incident, problem, and change management processes.</li>
+          <li>Performed performance tuning and reliability improvements.</li>
+          <li>Participated in architecture reviews and design decisions.</li>
         </ul>
+      </article>
 
-        <h3>Mastek Ltd</h3>
-        <p class="job-title">PL/SQL Developer</p>
-        <p class="job-duration">Nov 2011 – Mar 2014</p>
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">Capgemini India Pvt Ltd</span>
+            <span class="title">— Technical Lead / Senior Consultant</span>
+          </div>
+          <div class="dates">May 2017 – Feb 2019</div>
+        </div>
         <ul>
-            <li>Developed enterprise billing systems and optimized database performance</li>
+          <li>Delivered enterprise data and reporting solutions for global clients.</li>
+          <li>Contributed to data architecture and integration frameworks.</li>
+          <li>Led offshore teams and ensured high-quality deliverables.</li>
+          <li>Worked on data warehousing and BI solutions.</li>
         </ul>
+      </article>
 
-        <h3>ABM Knowledgeware Ltd</h3>
-        <p class="job-title">PL/SQL Developer</p>
-        <p class="job-duration">Mar 2011 – Nov 2011</p>
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">Mastek Ltd</span>
+            <span class="title">— PL/SQL Developer</span>
+          </div>
+          <div class="dates">Nov 2011 – Mar 2014</div>
+        </div>
         <ul>
-            <li>Built tax billing systems and reporting solutions</li>
+          <li>Developed enterprise billing systems and optimized database performance.</li>
         </ul>
+      </article>
 
-        <h3>Tata Teleservices</h3>
-        <p class="job-title">Senior Software Engineer / Assistant Manager</p>
-        <p class="job-duration">Oct 2007 – Mar 2011</p>
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">ABM Knowledgeware Ltd</span>
+            <span class="title">— PL/SQL Developer</span>
+          </div>
+          <div class="dates">Mar 2011 – Nov 2011</div>
+        </div>
         <ul>
-            <li>Supported telecom billing and mediation systems</li>
-            <li>Developed backend data processing and reporting solutions</li>
+          <li>Built tax billing systems and reporting solutions.</li>
         </ul>
+      </article>
+
+      <article class="role">
+        <div class="roleHeader">
+          <div>
+            <span class="company">Tata Teleservices</span>
+            <span class="title">— Senior Software Engineer / Assistant Manager</span>
+          </div>
+          <div class="dates">Oct 2007 – Mar 2011</div>
+        </div>
+        <ul>
+          <li>Supported telecom billing and mediation systems.</li>
+          <li>Developed backend data processing and reporting solutions.</li>
+        </ul>
+      </article>
     </section>
 
-    <section class="section">
+    <section class="grid" aria-label="Bottom sections">
+      <section class="card" aria-label="Certifications">
         <h2>Certifications</h2>
+        <div class="divider"></div>
         <ul>
-            <li>Oracle PL/SQL Certification (1Z0-147)</li>
-            <li>Oracle SQL Certification (1Z0-007)</li>
+          <li>Oracle PL/SQL Certification (1Z0-147)</li>
+          <li>Oracle SQL Certification (1Z0-007)</li>
         </ul>
-    </section>
+      </section>
 
-    <section class="section">
+      <section class="card" aria-label="Education">
         <h2>Education</h2>
+        <div class="divider"></div>
         <ul>
-            <li>MS Software Systems – BITS Pilani</li>
-            <li>B.E. – Mumbai University</li>
-            <li>Diploma – MSBTE</li>
+          <li>MS Software Systems — BITS Pilani</li>
+          <li>B.E. — Mumbai University</li>
+          <li>Diploma — MSBTE</li>
         </ul>
+      </section>
     </section>
 
-    <section class="section">
-        <h2>Additional Information</h2>
-        <ul>
-            <li>Strong experience with ITIL processes</li>
-            <li>Excellent problem-solving and analytical skills</li>
-            <li>Effective communicator with leadership experience</li>
-        </ul>
+    <section class="card" aria-label="Additional Information" style="margin-top:18px">
+      <h2>Additional Information</h2>
+      <div class="divider"></div>
+      <ul>
+        <li>Strong experience with ITIL processes</li>
+        <li>Excellent problem-solving and analytical skills</li>
+        <li>Effective communicator with leadership experience</li>
+      </ul>
     </section>
+
+    <footer>
+      Last updated: <span id="lastUpdated">—</span>
+    </footer>
+  </main>
+
+  <script>
+    // Small enhancement (safe): show last updated date without breaking if JS disabled
+    try {
+      const el = document.getElementById('lastUpdated');
+      const d = new Date(document.lastModified);
+      el.textContent = d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' });
+    } catch {}
+  </script>
 </body>
 </html>
