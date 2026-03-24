@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional experience timeline — Tushar M. Pawar" />
   <title>Professional Experience — Tushar M. Pawar</title>
+
   <style>
     :root{
       --text: rgba(255,255,255,.92);
@@ -29,6 +31,7 @@
     a:hover{ text-decoration: underline; text-underline-offset: 3px; }
     .container{ width:min(1100px, 92vw); margin:28px auto 70px; }
 
+    /* Top header + tabs (same as other pages) */
     .top{
       display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;
       margin-bottom: 14px;
@@ -70,6 +73,7 @@
       border-color: rgba(124,58,237,.35);
     }
 
+    /* Cards */
     .card{
       border: 1px solid var(--subtle);
       background: rgba(255,255,255,.05);
@@ -79,20 +83,145 @@
       padding: 18px;
     }
 
-    h2{ margin: 0 0 12px; font-size: 16px; }
-    .role{
-      padding: 14px 0;
-      border-top: 1px solid rgba(255,255,255,.12);
+    h2{ margin: 0 0 12px; font-size: 16px; letter-spacing: -0.01em; }
+    .lead{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
     }
-    .role:first-of-type{ border-top: 0; padding-top: 0; }
+
+    /* Timeline */
+    .timeline{
+      position: relative;
+      margin-top: 6px;
+      padding-left: 22px;
+      display: grid;
+      gap: 14px;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(124,58,237,.7), rgba(34,197,94,.35));
+      border-radius: 999px;
+      opacity: .9;
+    }
+
+    .year{
+      margin-top: 10px;
+      color: rgba(255,255,255,.75);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .item{
+      position: relative;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.14);
+      border-radius: 16px;
+      padding: 14px 14px 12px;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .item::before{
+      content:"";
+      position:absolute;
+      left: -22px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(124,58,237,.9);
+      box-shadow: 0 0 0 4px rgba(124,58,237,.22);
+    }
+    @media (hover:hover) and (pointer:fine){
+      .item:hover{
+        transform: translateY(-2px);
+        border-color: rgba(255,255,255,.22);
+        background: rgba(255,255,255,.04);
+      }
+    }
+
     .hdr{
-      display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px; align-items:baseline;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 8px;
     }
-    .company{ font-weight: 800; }
-    .title{ color: var(--muted); font-weight: 600; margin-left: 6px; }
-    .dates{ color: rgba(255,255,255,.65); font-size: 13.5px; white-space: nowrap; }
-    ul{ margin:10px 0 0; padding-left: 18px; color: var(--muted); line-height: 1.7; }
+    .company{
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+    .role{
+      color: rgba(255,255,255,.80);
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    .dates{
+      color: rgba(255,255,255,.65);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .project{
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin: 0 0 8px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.78);
+      font-size: 12.5px;
+      white-space: nowrap;
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 13.5px;
+    }
     li{ margin: 6px 0; }
+
+    .tech{
+      margin-top: 10px;
+      border-top: 1px dashed rgba(255,255,255,.14);
+      padding-top: 10px;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tech strong{ color: rgba(255,255,255,.86); }
+
+    @media print{
+      body{ background: white !important; color:#111 !important; }
+      .card, .item{ background: white !important; box-shadow:none !important; border-color:#ddd !important; }
+      .tabs{ display:none !important; }
+      .timeline::before{ background:#ddd !important; }
+      .item::before{ background:#888 !important; box-shadow:none !important; }
+      ul, .lead, .project, .tech{ color:#222 !important; }
+      .dates{ color:#333 !important; }
+      .container{ margin: 0; width: 100%; }
+    }
   </style>
 </head>
 
@@ -101,7 +230,7 @@
     <header class="top">
       <div class="brand">
         <h1>Tushar M. Pawar</h1>
-        <p>Professional Experience</p>
+        <p>Professional Experience (Timeline)</p>
       </div>
 
       <nav class="tabs" aria-label="Resume sections">
@@ -114,99 +243,373 @@
 
     <section class="card">
       <h2>Professional Experience</h2>
+      <p class="lead">
+        Timeline of roles and projects with focus on architecture, modernization, production stability, performance tuning,
+        and enterprise data/platform delivery.
+      </p>
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">ACCELYA</span>
-            <span class="title">— Solution Architect (Specialist Solution Architecture)</span>
-          </div>
-          <div class="dates">Nov 2022 – Present</div>
-        </div>
-        <ul>
-          <li>Designed cloud-native and hybrid architectures leveraging AWS and Azure for airline and financial platforms.</li>
-          <li>Led application modernization and cloud migration initiatives (lift-and-shift and re-architecture).</li>
-          <li>Defined reference architectures, design standards, and governance models.</li>
-          <li>Built scalable data pipelines and integration layers using modern ETL and cloud services.</li>
-          <li>Implemented cost optimization strategies and performance tuning for cloud workloads.</li>
-          <li>Enabled observability (monitoring, logging, alerting) for production systems.</li>
-          <li>Collaborated with stakeholders to translate business needs into high-level and low-level designs.</li>
-          <li>Mentored teams on cloud best practices, security, and resiliency patterns.</li>
-        </ul>
-      </article>
+      <section class="timeline" aria-label="Experience Timeline">
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">BNP Paribas</span>
-            <span class="title">— Technical Lead</span>
-          </div>
-          <div class="dates">Feb 2019 – Oct 2021</div>
-        </div>
-        <ul>
-          <li>Contributed to architecture evolution towards cloud-ready systems.</li>
-          <li>Led production support and system enhancements for market risk platforms.</li>
-          <li>Managed incident, problem, and change management processes.</li>
-          <li>Performed performance tuning and reliability improvements.</li>
-          <li>Participated in architecture reviews and design decisions.</li>
-        </ul>
-      </article>
+        <div class="year">Nov 2021 – Present</div>
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">Capgemini India Pvt Ltd</span>
-            <span class="title">— Technical Lead / Senior Consultant</span>
+        <article class="item" aria-label="ACCELYA - Emirates">
+          <div class="hdr">
+            <div>
+              <span class="company">ACCELYA</span>
+              <span class="role">— Solution Architect</span>
+            </div>
+            <div class="dates">Nov 2021 – Present</div>
           </div>
-          <div class="dates">May 2017 – Feb 2019</div>
-        </div>
-        <ul>
-          <li>Delivered enterprise data and reporting solutions for global clients.</li>
-          <li>Contributed to data architecture and integration frameworks.</li>
-          <li>Led offshore teams and ensured high-quality deliverables.</li>
-          <li>Worked on data warehousing and BI solutions.</li>
-        </ul>
-      </article>
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">Mastek Ltd</span>
-            <span class="title">— PL/SQL Developer</span>
-          </div>
-          <div class="dates">Nov 2011 – Mar 2014</div>
-        </div>
-        <ul>
-          <li>Developed enterprise billing systems and optimized database performance.</li>
-        </ul>
-      </article>
+          <p class="project">
+            <strong>Project:</strong> Emirates<br />
+            <strong>Brief:</strong> Emirates is the world's largest long haul airline and the largest airline in the Middle East.
+          </p>
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">ABM Knowledgeware Ltd</span>
-            <span class="title">— PL/SQL Developer</span>
+          <div class="meta" aria-label="ACCELYA Meta">
+            <span class="pill">Team: 37</span>
+            <span class="pill">AWS</span>
+            <span class="pill">Oracle / PL/SQL</span>
+            <span class="pill">Python</span>
+            <span class="pill">Shell scripting</span>
+            <span class="pill">SAP BO</span>
           </div>
-          <div class="dates">Mar 2011 – Nov 2011</div>
-        </div>
-        <ul>
-          <li>Built tax billing systems and reporting solutions.</li>
-        </ul>
-      </article>
 
-      <article class="role">
-        <div class="hdr">
-          <div>
-            <span class="company">Tata Teleservices</span>
-            <span class="title">— Senior Software Engineer / Assistant Manager</span>
+          <ul>
+            <li>Designed cloud-native and hybrid architectures leveraging AWS for airline and financial platforms.</li>
+            <li>Led application modernization and cloud migration initiatives (lift-and-shift and re-architecture).</li>
+            <li>Defined reference architectures, design standards, and governance models.</li>
+            <li>Built scalable data pipelines and integration layers using modern ETL and cloud services.</li>
+            <li>Implemented cost optimization strategies and performance tuning for cloud workloads.</li>
+            <li>Enabled observability (monitoring, logging, alerting) for production systems.</li>
+            <li>Collaborated with stakeholders to translate business needs into high-level and low-level designs.</li>
+            <li>Mentored teams on cloud best practices, security, and resiliency patterns.</li>
+            <li>Architected AWS components (S3, IAM, VPC, CloudWatch, Lambda) and established security/resiliency guardrails.</li>
+            <li>Implemented data & integration patterns using AWS services (S3, Glue/ETL patterns, Step Functions scheduling patterns) and Python automation.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle PL/SQL • Python • SAP BO • Shell scripting • AWS (S3, IAM, VPC, CloudWatch, Lambda) • Azure
           </div>
-          <div class="dates">Oct 2007 – Mar 2011</div>
-        </div>
-        <ul>
-          <li>Supported telecom billing and mediation systems.</li>
-          <li>Developed backend data processing and reporting solutions.</li>
-        </ul>
-      </article>
+        </article>
+
+        <div class="year">2019 – 2021</div>
+
+        <article class="item" aria-label="BNP Paribas - Market Risk">
+          <div class="hdr">
+            <div>
+              <span class="company">BNP Paribas</span>
+              <span class="role">— Technical Lead</span>
+            </div>
+            <div class="dates">Feb 2019 – Oct 2021</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> Market Risk<br />
+            <strong>Brief:</strong> BNP Paribas is a French international banking group operating across 72 countries, and is among the world’s largest banks by total assets.
+          </p>
+
+          <div class="meta" aria-label="BNP Paribas Meta">
+            <span class="pill">Team: 28</span>
+            <span class="pill">OS: Linux</span>
+            <span class="pill">DB: Sybase / Oracle</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">ServiceNow</span>
+            <span class="pill">Geneos</span>
+          </div>
+
+          <ul>
+            <li>Responsible for monitoring the production servers and scheduled jobs.</li>
+            <li>Participated in incident, change and problem management.</li>
+            <li>Created RCA documents for major issues.</li>
+            <li>Worked incidents and requests from end-users, analyzing these and responding with solutions.</li>
+            <li>Worked on bug fixes; suggested technical solutions and enhancements.</li>
+            <li>Query optimization and performance tuning.</li>
+            <li>Participated in application enhancements with respect to architecture guidelines.</li>
+            <li>Participated in definition/review of application architecture; prepared/reviewed unit & system test documents.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Sybase/Oracle • PL/SQL • ServiceNow • Geneos • Linux
+          </div>
+        </article>
+
+        <!-- keep remaining roles as in your existing file (2017-2019, 2016-2017, 2014-2016, etc.) -->
+
+        <div class="year">2017 – 2019</div>
+
+        <article class="item" aria-label="Capgemini - TE Connectivity">
+          <div class="hdr">
+            <div>
+              <span class="company">Capgemini India Pvt Ltd.</span>
+              <span class="role">— Technical Lead</span>
+            </div>
+            <div class="dates">May 2017 – Feb 2019</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> TEC (Tyco Electronics / TE Connectivity) — Worldwide<br />
+            <strong>Brief:</strong> TE Connectivity designs and manufactures connectivity and sensor products used in harsh environments across automotive, industrial, aerospace, defense, medical, energy and more; serving customers in 150 countries.
+          </p>
+
+          <div class="meta" aria-label="TEC Meta">
+            <span class="pill">Team: 14</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 12c / SQL Server 2014</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">Control‑M</span>
+            <span class="pill">SOAP</span>
+            <span class="pill">ServiceNow</span>
+            <span class="pill">ITIL v3</span>
+          </div>
+
+          <ul>
+            <li>Led support and enhancement delivery based on client change requests; ensured predictable releases and production stability.</li>
+            <li>Implemented bug fixes and continuous improvements with focus on reliability and performance.</li>
+            <li>Participated in incident, change and problem management in line with ITIL v3 standards.</li>
+            <li>Owned quality and performance of deliverables; enforced development standards and review practices.</li>
+            <li>Recommended technical solutions/enhancements aligned with architecture guidelines.</li>
+            <li>Executed query optimization and performance tuning across Oracle/SQL Server.</li>
+            <li>Supported architecture definition/review and prepared/reviewed Unit & System testing documentation.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 12c • SQL Server 2014 • PL/SQL • Control‑M • SOAP • ServiceNow • Unix
+          </div>
+        </article>
+
+        <div class="year">2016 – 2017</div>
+
+        <article class="item" aria-label="Capgemini - American Electric Power">
+          <div class="hdr">
+            <div>
+              <span class="company">Capgemini India Pvt Ltd.</span>
+              <span class="role">— Senior Consultant</span>
+            </div>
+            <div class="dates">Aug 2016 – Feb 2017</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> American Electric Power (AEP) — USA<br />
+            <strong>Brief:</strong> AEP is a major investor-owned electric utility in the United States, delivering electricity to more than five million customers in 11 states.
+          </p>
+
+          <div class="meta" aria-label="AEP Meta">
+            <span class="pill">Team: 28</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 11g</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">IBM Cognos 11</span>
+            <span class="pill">SAP BO</span>
+          </div>
+
+          <ul>
+            <li>Gathered requirements and translated them into scope, design and implementation plans.</li>
+            <li>Delivered enhancements following IT development methodologies and architecture guidelines.</li>
+            <li>Supported architecture definition/review and prepared/reviewed Unit & System testing artifacts.</li>
+            <li>Ensured quality and performance of developments; proposed technical solutions and improvements.</li>
+            <li>Led an offshore team to deliver on-time, high-quality releases.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 11g • PL/SQL • IBM Cognos 11 • SAP BO • Unix
+          </div>
+        </article>
+
+        <div class="year">2014 – 2016</div>
+
+        <article class="item" aria-label="Capgemini - DTAG-Mobile">
+          <div class="hdr">
+            <div>
+              <span class="company">Capgemini India Pvt Ltd.</span>
+              <span class="role">— Senior Consultant (ETL / PL/SQL Developer)</span>
+            </div>
+            <div class="dates">Mar 2014 – Aug 2016</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> DTAG‑Mobile — Deutsche Telekom (T‑Mobile), Germany<br />
+            <strong>Brief:</strong> Data Warehousing & BI platform for T‑Mobile management reporting across billing, subscribers, sales, connections and operational domains.
+          </p>
+
+          <div class="meta" aria-label="DTAG Meta">
+            <span class="pill">Team: 20</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 11g</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">IBM Cognos 11</span>
+            <span class="pill">Sybase PowerDesigner</span>
+            <span class="pill">WinSCP</span>
+            <span class="pill">UC4</span>
+          </div>
+
+          <ul>
+            <li>Modeled requirements into a metadata model using Sybase PowerDesigner to support consistent DWH design.</li>
+            <li>Delivered development/enhancements following methodology and architecture standards.</li>
+            <li>Ensured quality and performance; proposed technical solutions and enhancements.</li>
+            <li>Supported acceptance & production (go‑live) phase onshore in Germany.</li>
+            <li>Participated in hot-fix phase and production stabilization activities.</li>
+            <li>Led offshore team to deliver on-time and high-quality deliverables.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 11g • PL/SQL • IBM Cognos 11 • Sybase PowerDesigner • UC4 • Unix
+          </div>
+        </article>
+
+        <div class="year">2011 – 2014</div>
+
+        <article class="item" aria-label="MASTEK - ERIE Insurance">
+          <div class="hdr">
+            <div>
+              <span class="company">MASTEK Ltd.</span>
+              <span class="role">— PL/SQL Developer</span>
+            </div>
+            <div class="dates">Nov 2011 – Mar 2014</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> P&amp;C – AMS Billing &amp; PAS<br />
+            <strong>Client:</strong> ERIE Insurance (US)<br />
+            <strong>Brief:</strong> Supported billing suite handling databases for 5M+ policies; developed/maintained Oracle-based components for billing processes and reporting.
+          </p>
+
+          <div class="meta" aria-label="MASTEK Meta">
+            <span class="pill">Team: 15</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 11g</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">Oracle Report Builder</span>
+          </div>
+
+          <ul>
+            <li>Delivered development and enhancements based on client change requests.</li>
+            <li>Provided L3 production support and resolved defects with strong RCA and prevention focus.</li>
+            <li>Built/enhanced online reports and outputs using Oracle Report Builder.</li>
+            <li>Prepared/reviewed Unit & System test plans and test cases for reliable releases.</li>
+            <li>Performed query optimization and performance tuning for critical billing workloads.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 11g • PL/SQL • Oracle Report Builder • Unix
+          </div>
+        </article>
+
+        <div class="year">2011</div>
+
+        <article class="item" aria-label="ABM Knowledgeware - Property Tax Billing">
+          <div class="hdr">
+            <div>
+              <span class="company">ABM Knowledgeware Ltd.</span>
+              <span class="role">— PL/SQL Developer</span>
+            </div>
+            <div class="dates">Mar 2011 – Nov 2011</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> Property Tax (Billing)<br />
+            <strong>Client:</strong> Mumbai Municipal Corporation<br />
+            <strong>Brief:</strong> Supported assessment & collection systems used to process large-scale property tax billing and reporting.
+          </p>
+
+          <div class="meta" aria-label="ABM Meta">
+            <span class="pill">Team: 12</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 10g</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">Jasper iReports</span>
+            <span class="pill">TOAD</span>
+          </div>
+
+          <ul>
+            <li>Supported semi‑annual billing processing and operational reporting.</li>
+            <li>Enhanced existing modules and delivered defect fixes with production support.</li>
+            <li>Built business reporting queries and created Jasper reports using iReport.</li>
+            <li>Provided acceptance and production support; handled client issues end-to-end.</li>
+            <li>Optimized queries and tuned performance for key billing/reporting jobs.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 10g • PL/SQL • Jasper iReports • TOAD • Unix
+          </div>
+        </article>
+
+        <div class="year">2010 – 2011</div>
+
+        <article class="item" aria-label="PCS Technologies - Neotel">
+          <div class="hdr">
+            <div>
+              <span class="company">PCS Technologies</span>
+              <span class="role">— Senior Software Engineer (DB Developer)</span>
+            </div>
+            <div class="dates">Aug 2010 – Mar 2011</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> Telecom Billing and Mediation<br />
+            <strong>Client:</strong> NEOTEL, South Africa<br />
+            <strong>Brief:</strong> Supported telecom billing/mediation operations for ~40K+ customers including fortnightly and monthly billing cycles.
+          </p>
+
+          <div class="meta" aria-label="PCS Meta">
+            <span class="pill">Team: 10</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 10g</span>
+            <span class="pill">PL/SQL</span>
+            <span class="pill">TOAD</span>
+            <span class="pill">PL/SQL Developer</span>
+          </div>
+
+          <ul>
+            <li>Owned backend support for billing and mediation processes executed on fortnightly and monthly cycles.</li>
+            <li>Ensured development quality and performance; suggested technical solutions and enhancements.</li>
+            <li>Built SQL queries and business reports as requested by stakeholders.</li>
+            <li>Diagnosed backend issues, executed SQL analysis, and provided data extracts to client teams.</li>
+            <li>Implemented updates in UNIX shell scripts based on business requirements.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 10g • PL/SQL • Unix • Shell scripting
+          </div>
+        </article>
+
+        <div class="year">2007 – 2010</div>
+
+        <article class="item" aria-label="TATA Teleservices - TATA Indicom">
+          <div class="hdr">
+            <div>
+              <span class="company">TATA Teleservices</span>
+              <span class="role">— Assistant Manager</span>
+            </div>
+            <div class="dates">Oct 2007 – Aug 2010</div>
+          </div>
+
+          <p class="project">
+            <strong>Project:</strong> Telecom Billing and NMS Monitoring<br />
+            <strong>Client:</strong> TATA Indicom<br />
+            <strong>Brief:</strong> Supported telecom billing data and monitoring workflows for CDMA customer systems.
+          </p>
+
+          <div class="meta" aria-label="TATA Meta">
+            <span class="pill">Team: 12</span>
+            <span class="pill">OS: Unix</span>
+            <span class="pill">DB: Oracle 10g</span>
+            <span class="pill">SQL</span>
+          </div>
+
+          <ul>
+            <li>Prepared SQL queries to support business reporting and operational analysis.</li>
+            <li>Delivered ad-hoc reporting queries based on stakeholder requirements.</li>
+            <li>Implemented changes in UNIX shell scripts as per requirements.</li>
+            <li>Handled client issues and supported production operations.</li>
+          </ul>
+
+          <div class="tech">
+            <strong>Technology:</strong> Oracle 10g • SQL • Unix • Shell scripting
+          </div>
+        </article>
+
+      </section>
     </section>
   </main>
 </body>
